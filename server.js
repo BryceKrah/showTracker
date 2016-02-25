@@ -9,6 +9,9 @@ var methodOverride   = require('method-override');
 var env              = require('dotenv');
 var app              = express();
 
+var userRoutes       = require(path.join(__dirname, '/routes/users'));
+
+
 app.use( bodyParser.urlencoded({ extended: false }));
 app.use( bodyParser.json());
 
@@ -22,7 +25,11 @@ app.set('view engine', 'ejs')
 
 app.get('/', function(req,res){
   res.send("homepageeee")
-})
+});
+
+app.use('/users', userRoutes);
+
+
 
 
 var port = process.env.PORT || 3000;
