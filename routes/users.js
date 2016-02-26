@@ -3,6 +3,7 @@ var users = express.Router();
 var bodyParser = require('body-parser');
 var db = require('./../db/pg');
 
+
 users.get('/', function(req,res){
   res.render('./users/profile.html.ejs', { user : req.session.user})
 })
@@ -36,9 +37,12 @@ users.post('/login', db.loginUser, function(req, res) {
 
 users.delete('/logout', function(req, res) {
   req.session.destroy(function(err){
-    res.redirect('/users');
+    res.redirect('/');
   })
 })
+
+
+
 
 
 module.exports = users;

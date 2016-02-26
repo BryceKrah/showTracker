@@ -35,7 +35,7 @@ app.set('views', './views')
 app.set('view engine', 'ejs')
 
 app.get('/', function(req, res) {
-  res.render('home.html.ejs', { user : req.session.user});
+  res.render('home.html.ejs');
 })
 
 app.use('/users', userRoutes)
