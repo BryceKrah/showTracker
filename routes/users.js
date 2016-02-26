@@ -3,18 +3,22 @@ var users = express.Router();
 var bodyParser = require('body-parser');
 var db = require('./../db/pg');
 
+users.get('/', function(req,res){
+  res.render('./users/profile.html.ejs', { user : req.session.user})
+})
+
 
 users.post('/', db.createUser, function(req, res){
-  res.redirect('/');
+  res.redirect('profile.html.ejs');
 })
 
 // users.route('/')
 users.get('/new', function(req, res) {
-  res.render('users/new.html.ejs')
+  res.render('./users/new.html.ejs')
 })
 
 users.get('/login', function(req, res) {
-  res.render('users/login.html.ejs');
+  res.render('./users/login.html.ejs');
 })
 
 users.post('/login', db.loginUser, function(req, res) {
@@ -26,13 +30,13 @@ users.post('/login', db.loginUser, function(req, res) {
   // the destination page well before we finished sending the response to the client."
 
   req.session.save(function() {
-    res.redirect('/')
+    res.redirect('/users')
   });
 })
 
 users.delete('/logout', function(req, res) {
   req.session.destroy(function(err){
-    res.redirect('/');
+    res.redirect('/users');
   })
 })
 
