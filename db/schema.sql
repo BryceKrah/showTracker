@@ -1,0 +1,11 @@
+DROP TABLE if EXISTS users CASCADE;
+DROP TABLE if EXISTS shows CASCADE;
+DROP TABLE if EXISTS xref CASCADE;
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY UNIQUE,
+  name VARCHAR(200),
+  email VARCHAR(200),
+  password_digest TEXT,
+  bio VARCHAR(140)
+)

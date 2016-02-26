@@ -1,28 +1,40 @@
 var express = require('express');
 var users = express.Router();
 var bodyParser = require('body-parser');
-
-// test function for route hit
-function testFunction(req,res){
-  res.send(req.method + ' users not implemented');
-};
+var db = require('./../db/pg');
 
 
-// create new user
-users.post('/', testFunction);
+users.post('/', db.createUser, function(req, res){
+  res.redirect('/');
+})
 
-// show new user signup page
-users.get('/new', testFunction);
+// users.route('/')
+users.get('/new', function(req, res) {
+  res.render('users/new.html.ejs')
+})
 
-// show user login page
-users.get('/login', testFunction);
+users.get('/login', function(req, res) {
+  res.render('users/login.html.ejs');
+})
 
-// log user in
-users.post('/login', testFunction);
+users.post('/login', db.loginUser, function(req, res) {
+  req.session.user = res.rows
 
+  // when you redirect you must force a save due to asynchronisity
+  // https://github.com/expressjs/session/issues/167 **
+  // "modern web browsers ignore the body of the response and so start loading
+  // the destination page well before we finished sending the response to the client."
 
-// log user out
-users.delete('/logout', testFunction);
+  req.session.save(function() {
+    res.redirect('/')
+  });
+})
+
+users.delete('/logout', function(req, res) {
+  req.session.destroy(function(err){
+    res.redirect('/');
+  })
+})
 
 
 module.exports = users;
