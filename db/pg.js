@@ -68,5 +68,85 @@ function createUser(req, res, next) {
   }
 }
 
+
+
+function showAllUsers(req,res,next){
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      done()
+      console.log(err)
+      return res.status(500).json({success: false, data: err})
+    }
+
+    var query = client.query('SELECT name,bio FROM users ORDER BY id', function(err, results) {
+      done();
+
+      if (err) {
+        console.error('Error with query', err);
+      }
+
+      res.users = results.rows;
+      next();
+    });
+  })
+}
+
+   // 'INSERT INTO xref (user_id) VALUES ($1);', [req.params.id],
+
+function addShowToFavList(req,res,next){
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      done()
+      console.log(err)
+      return res.status(500).json({success: false, data: err})
+    }
+    var query = client.query("INSERT INTO shows (name,genre,seasons) VALUES ($1,$2,$3) RETURNING id;", [req.body.name, req.body.genre, req.body.seasons], function(err, results) {
+      done();
+
+      if (err) {
+        console.error('Error with query', err);
+      }
+      var query = client.query("INSERT INTO xref (user_id, show_id) VALUES ($1, (currval('shows_id_seq')));", [req.params.id], function(err, results) {
+        done();
+
+        if (err) {
+          console.error('Error with query', err);
+        }
+      next();
+    });
+  });
+  })
+}
+
+
+
+function getUser(req, res, next) {
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      done();
+      console.log(err);
+      res.status(500).json({success: false, data: err});
+    }
+
+    client.query('SELECT users.id as id, users.name as name, array_agg(shows.name) as shows FROM users LEFT JOIN xref on xref.user_id = users.id LEFT JOIN shows on xref.show_id = shows.id WHERE users.id = $1 GROUP BY users.name, users.id;', [req.params.id], function(err, results) {
+      done();
+
+      if (err) {
+        console.error('Error with query', err);
+      }
+
+      res.user = results.rows;
+      next();
+
+    });
+  });
+
+};
+
+
+
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
+module.exports.showAllUsers = showAllUsers;
+module.exports.addShowToFavList = addShowToFavList;
+module.exports.getUser = getUser;

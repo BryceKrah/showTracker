@@ -4,13 +4,13 @@ var bodyParser = require('body-parser');
 var db = require('./../db/pg');
 
 
+// user login,logout,sign up routes
 users.get('/', function(req,res){
   res.render('./users/profile.html.ejs', { user : req.session.user})
 })
 
-
 users.post('/', db.createUser, function(req, res){
-  res.redirect('profile.html.ejs');
+  res.redirect('/users');
 })
 
 // users.route('/')
@@ -41,7 +41,20 @@ users.delete('/logout', function(req, res) {
   })
 })
 
+users.get('/:id', db.getUser, function(req,res){
+  var id = req.params.id
+  res.render('users/profile.html.ejs', {user: res.user[0]});
+})
 
+users.get('/:id/favlist', function(req,res){
+  var id = req.params.id;
+  res.render('./lists/newfavorite.html.ejs', { id : id})
+})
+
+users.post('/:id/favlist', db.addShowToFavList,  function(req,res){
+  var id = req.params.id;
+  res.redirect('/users/' + id);
+})
 
 
 

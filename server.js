@@ -34,14 +34,14 @@ app.use(methodOverride('_method'))
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-app.get('/', function(req, res) {
-  res.render('home.html.ejs');
+app.get('/', db.showAllUsers, function(req, res) {
+  res.render('home.html.ejs', { user : res.users});
 })
 
 app.use('/users', userRoutes)
 
-
-
+ //
+ //
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port)

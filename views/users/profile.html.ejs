@@ -8,14 +8,33 @@
 
     <% if (user) { %>
       <h3>Welcome <%= user.name %></h3>
+      <%= user.bio %>
     <% } %>
+
+    <form action="/users/<%=user.id%>/favlist" method="get">
+      <button>Make New List</button>
+    </form>
+  </div>
 
     <div>
       <form action="users/logout?_method=DELETE" method="post">
         <button>Logout</button>
       </form>
     </div>
+    <div>
+      <form action="/" method="get">
+        <button>Go Home</button>
+      </form>
+    </div>
 
-    
+
+    <h2>User #<span><%= user.id %></span></h2>
+      <h3>Shows:</h3>
+      <ul>
+        <% user.shows.forEach(function(show) { %>
+          <li> <%= show %> </li>
+        <% }); %>
+</ul>
+
 </body>
 </html>

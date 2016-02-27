@@ -5,6 +5,22 @@
   <title>Home</title>
 </head>
 <body>
+  <!-- <% if (user) { %>
+    <h3>Hello <%= user.name %></h3>
+  <% } %> -->
+
+
+
+    <div class="container">
+      <% user.forEach(function(users) { %>
+        <div>
+          <div><%= users.name %></div>
+          <div><%= users.bio %></div>
+        </div>
+      <% }) %>
+    </div>
+
+
 
   <div>
     <a href="/users/new">Signup</a>
