@@ -24,12 +24,6 @@ users.get('/login', function(req, res) {
 
 users.post('/login', db.loginUser, function(req, res) {
   req.session.user = res.rows
-
-  // when you redirect you must force a save due to asynchronisity
-  // https://github.com/expressjs/session/issues/167 **
-  // "modern web browsers ignore the body of the response and so start loading
-  // the destination page well before we finished sending the response to the client."
-
   req.session.save(function() {
     res.redirect('/users')
   });
@@ -41,21 +35,30 @@ users.delete('/logout', function(req, res) {
   })
 })
 
-users.get('/:id', db.getUser, function(req,res){
+users.get('/:id', db.getUserList, function(req,res){
   var id = req.params.id
   res.render('users/profile.html.ejs', {user: res.user[0]});
-})
+});
 
 users.get('/:id/favlist', function(req,res){
   var id = req.params.id;
   res.render('./lists/newfavorite.html.ejs', { id : id})
-})
+});
 
 users.post('/:id/favlist', db.addShowToFavList,  function(req,res){
   var id = req.params.id;
   res.redirect('/users/' + id);
-})
+});
 
+
+users.get('/:id/editshow', function(req,res){
+  var id = req.params.id;
+  res.render('./lists/editshow.html.ejs', {id : id})
+});
+users.put('/:id/favlist', db.editShow, function(req,res){
+  var id = req.params.id;
+  res.redirect('/users/'+id)
+});
 
 
 module.exports = users;

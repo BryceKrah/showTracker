@@ -91,8 +91,6 @@ function showAllUsers(req,res,next){
   })
 }
 
-   // 'INSERT INTO xref (user_id) VALUES ($1);', [req.params.id],
-
 function addShowToFavList(req,res,next){
   pg.connect(connectionString, function(err, client, done) {
     if (err) {
@@ -120,7 +118,7 @@ function addShowToFavList(req,res,next){
 
 
 
-function getUser(req, res, next) {
+function getUserList(req, res, next) {
   pg.connect(connectionString, function(err, client, done) {
     if (err) {
       done();
@@ -128,7 +126,7 @@ function getUser(req, res, next) {
       res.status(500).json({success: false, data: err});
     }
 
-    client.query('SELECT users.id as id, users.name as name, array_agg(shows.name) as shows FROM users LEFT JOIN xref on xref.user_id = users.id LEFT JOIN shows on xref.show_id = shows.id WHERE users.id = $1 GROUP BY users.name, users.id;', [req.params.id], function(err, results) {
+    client.query('SELECT users.id as id, users.name as name, users.bio as bio, array_agg(shows.name) as shows FROM users LEFT JOIN xref on xref.user_id = users.id LEFT JOIN shows on xref.show_id = shows.id WHERE users.id = $1 GROUP BY users.name, users.id;', [req.params.id], function(err, results) {
       done();
 
       if (err) {
@@ -145,8 +143,35 @@ function getUser(req, res, next) {
 
 
 
+function editShow(req, res, next) {
+
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      done();
+      console.log(err);
+      res.status(500).json({success: false, data: err});
+    }
+
+    client.query('UPDATE shows SET name = $1 WHERE id = $2', [req.body.name, req.params.id], (err, results) => {
+      done();
+
+      if (err) {
+        console.error('Error with query', err);
+      }
+
+      next();
+    });
+
+  });
+
+};
+
+
+
+
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
 module.exports.showAllUsers = showAllUsers;
 module.exports.addShowToFavList = addShowToFavList;
-module.exports.getUser = getUser;
+module.exports.getUserList = getUserList;
+module.exports.editShow = editShow
