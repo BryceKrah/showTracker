@@ -3,71 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <title>Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
+
     <% if (user) { %>
-      <h3>Welcome <%= user.name %></h3>
-      <div><%= user.bio %> </div>
-      <% console.log(user)%>
+      <h3 class="welcome">Welcome <%= user.name %></h3>
     <% } %>
 
 
 
+  <div class="wrapper">
 
-    <div>
-      <form action="/users/<%=user.id%>/favlist" method="get">
-        <button>Add Show to List</button>
+    <aside class="aside aside-2">
+      <div>
+        <form action="/" method="get">
+          <button>Homepage</button>
+        </form>
       </div>
-    </form>
-
-    <div>
-      <form action="/users/<%=user.id%>/delete?_method=DELETE" method="POST">
-        <button>Delete Account</button>
-      </form>
-    </div>
-
-
     <div>
       <form action="users/logout?_method=DELETE" method="post">
         <button>Logout</button>
       </form>
     </div>
     <div>
-      <form action="/" method="get">
-        <button>Homepage</button>
+      <form action="/users/<%=user.id%>/delete?_method=DELETE" method="POST">
+        <button>Delete Account</button>
       </form>
     </div>
+  </aside>
+
+  <aside class="aside aside-1">
     <div>
       <form action="/users/<%=user.id%>/allshows" method="get">
         <button>More Info on Shows</button>
       </form>
     </div>
 
+    <div>
+      <form action="/users/<%=user.id%>/favlist" method="get">
+        <button>Add Show to List</button>
+    </form>
+    </div>
+  </aside>
 
-    <h2>User :<span><%= user.name %></span></h2>
-      <h3>Shows:</h3>
+  <div class="container">
+
+    <h2><span><%= user.name %>'s Profile</span></h2>
+      <h4>Bio - <%= user.bio %></h3>
+      <h4>Shows I like:</h3>
       <ul>
         <% var num = 0 %>
         <% user.shows.forEach(function(show) { %>
-
-          <% console.log(user.showid[num] +" : "+ (user.shows[num]) + " this is user.showid[num]") %>
-          <li> <%= show %>
+          <div> <%= show %>
             <div>
+              <span>
               <form action="/users/<%=user.id%>/editshow" method="GET">
                 <button>Edit Show</button>
               </form>
-            </div>
-            <div>
               <form action="/users/<%=user.id%>/editshow?_method=DELETE" method="POST">
                 <input type="hidden" name="sid" value="<%= user.showid[num] %>">
                 <button>Remove Show</button>
               </form>
+             </span>
             </div>
-          </li>
+          </div>
           <% num++ %>
         <% }); %>
 </ul>
+</div>
 
+</div>
 </body>
 </html>

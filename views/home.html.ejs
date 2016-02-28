@@ -6,19 +6,14 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <!-- <% if (user) { %>
-    <h3>Hello <%= user.name %></h3>
-  <% } %> -->
 
     <h1 class="header">ShowTracker</h1>
     <div class="wrapper">
       <div class="container">
       <% user.forEach(function(users) { %>
           <div>
-          <div><%= users.name %></div>
-          <div><%= users.bio %></div>
+          <div><%= users.name %> - <%= users.bio %></div>
           <div>
-            <% console.log(users) %>
             <form action="/users/<%=users.id%>/" method="GET">
               <button>View Profile</button>
             </form>
@@ -30,11 +25,15 @@
 
   <aside class="aside aside-1">
   <div>
-    <a href="/new">Signup</a>
+    <form action="/new" method="get">
+      <button>Signup</button>
+    </form>
   </div>
 
   <div>
-    <a href="/login">Login</a>
+    <form action="/login" method="get">
+      <button>Login</button>
+    </form>
   </div>
 
   <div>

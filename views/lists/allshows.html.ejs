@@ -3,62 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <title>Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
     <% if (user) { %>
       <h3>Welcome <%= user.name %></h3>
       <div><%= user.bio %> </div>
-      <% console.log(user)%>
     <% } %>
 
+    <div class="wrapper">
+    <div class="aside aside-1">
 
     <div>
       <form action="/users/<%=user.id%>/favlist" method="get">
         <button>Add Show to List</button>
-      </div>
-    </form>
+      </form>
+    </div>
 
-    <div>
-      <form action="users/logout?_method=DELETE" method="post">
-        <button>Logout</button>
-      </form>
-    </div>
-    <div>
-      <form action="/" method="get">
-        <button>Homepage</button>
-      </form>
-    </div>
     <div>
       <form action="/users/<%=user.id%>/" method="GET">
         <button>Profile</button>
       </form>
     </div>
 
+    <div>
+      <form action="/" method="get">
+        <button>Homepage</button>
+      </form>
+    </div>
 
-    <h2>User :<span><%= user.name %></span></h2>
-      <h3>Shows:</h3>
+    <div>
+      <form action="users/logout?_method=DELETE" method="post">
+        <button>Logout</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <h2><span><%= user.name %>'s Favorite TV Shows</span></h2>
       <ul>
-        <% console.log(user.showid) %>
         <% var num = 0 %>
         <% user.shows.forEach(function(show) { %>
-          <li> <%= show %>
+          <div>
+
 
             <div>
-              <%= user.genre[num] %>
+              Title: <%= show %>
             </div>
             <div>
-              <%= user.seasons[num] %>
+            Genre:  <%= user.genre[num] %>
+            </div>
+            <div>
+            Seasons:  <%= user.seasons[num] %>
             </div>
             <div>
               <form action="/users/<%=user.id%>/editshow" method="GET">
                 <button>Edit Show</button>
               </form>
             </div>
-          </li>
+          </div>
         <% num++ %>
         <% }); %>
 </ul>
+</div>
+  <aside class="aside aside-2">something can go here</aside>
 
+</div>
 </body>
 </html>

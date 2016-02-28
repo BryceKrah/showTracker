@@ -63,6 +63,7 @@ app.post('/login', db.loginUser, function(req, res) {
     res.redirect('/')
   });
 })
+
 app.delete('/logout', function(req, res) {
   req.session.destroy(function(err){
     res.redirect('/');
@@ -71,8 +72,6 @@ app.delete('/logout', function(req, res) {
 
 app.use('/users', userRoutes)
 
- //
- //
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port)
