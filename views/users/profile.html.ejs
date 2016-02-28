@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+</head>
+<body>
+
+    <% if (user) { %>
+      <h3>Welcome <%= user.name %></h3>
+      <div><%= user.bio %> </div>
+      <% console.log(user)%>
+    <% } %>
+
+
+
+
+    <div>
+      <form action="/users/<%=user.id%>/favlist" method="get">
+        <button>Add Show to List</button>
+      </div>
+    </form>
+
+
+
+    <div>
+      <form action="users/logout?_method=DELETE" method="post">
+        <button>Logout</button>
+      </form>
+    </div>
+    <div>
+      <form action="/" method="get">
+        <button>Go Home</button>
+      </form>
+    </div>
+
+
+    <h2>User :<span><%= user.name %></span></h2>
+      <h3>Shows:</h3>
+      <ul>
+        <% var num = 0 %>
+        <% user.shows.forEach(function(show) { %>
+
+          <% console.log(user.showid[num] +" : "+ (user.shows[num]) + " this is user.showid[num]") %>
+          <li> <%= show %>
+            <div>
+              <form action="/users/<%=user.id%>/editshow" method="GET">
+                <button>Edit Show</button>
+              </form>
+            </div>
+            <div>
+              <form action="/users/<%=user.id%>/editshow?_method=DELETE" method="POST">
+                <input type="hidden" name="sid" value="<%= user.showid[num] %>">
+                <button>Remove Show</button>
+              </form>
+            </div>
+          </li>
+          <% num++ %>
+        <% }); %>
+</ul>
+
+</body>
+</html>
