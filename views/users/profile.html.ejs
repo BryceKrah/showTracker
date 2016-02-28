@@ -21,6 +21,11 @@
       </div>
     </form>
 
+    <div>
+      <form action="/users/<%=user.id%>/delete?_method=DELETE" method="POST">
+        <button>Delete Account</button>
+      </form>
+    </div>
 
 
     <div>
@@ -30,7 +35,12 @@
     </div>
     <div>
       <form action="/" method="get">
-        <button>Go Home</button>
+        <button>Homepage</button>
+      </form>
+    </div>
+    <div>
+      <form action="/users/<%=user.id%>/allshows" method="get">
+        <button>More Info on Shows</button>
       </form>
     </div>
 

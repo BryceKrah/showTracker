@@ -29,6 +29,11 @@ users.post('/:id/favlist', db.addShowToFavList,  function(req,res){
   res.redirect('/users/' + id);
 });
 
+users.delete('/:id/delete', db.deleteAccount, function(req,res){
+  var id = req.params.id;
+  res.redirect('/')
+})
+
 
 users.get('/:id/editshow', function(req,res){
   var id = req.params.id;

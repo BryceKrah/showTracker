@@ -33,6 +33,7 @@ app.use(methodOverride('_method'))
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', db.showAllUsers, function(req, res) {
   res.render('home.html.ejs', { user : res.users});

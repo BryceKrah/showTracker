@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Home</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <!-- <% if (user) { %>
     <h3>Hello <%= user.name %></h3>
   <% } %> -->
 
-  <h1>ShowTracker</h1>
-
-    <div class="container">
+    <h1 class="header">ShowTracker</h1>
+    <div class="wrapper">
+      <div class="container">
       <% user.forEach(function(users) { %>
-        <div>
+          <div>
           <div><%= users.name %></div>
           <div><%= users.bio %></div>
           <div>
             <% console.log(users) %>
             <form action="/users/<%=users.id%>/" method="GET">
-              <button>See Profile</button>
+              <button>View Profile</button>
             </form>
           </div>
         </div>
@@ -27,7 +28,7 @@
     </div>
 
 
-
+  <aside class="aside aside-1">
   <div>
     <a href="/new">Signup</a>
   </div>
@@ -41,6 +42,13 @@
       <button>Logout</button>
     </form>
   </div>
+  </aside>
+
+  <aside class="aside aside-2">
+    <div>something here</div>
+  </aside>
+
+</div> <!-- end of wrapper -->
 
 </body>
 </html>

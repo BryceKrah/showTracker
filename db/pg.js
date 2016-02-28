@@ -201,6 +201,25 @@ function deleteShow(req,res,next){
 });
 }
 
+function deleteAccount(req,res,next){
+  pg.connect(connectionString, function(err, client, done) {
+  if (err) {
+    done();
+    console.log(err);
+    res.status(500).json({success: false, data: err});
+  }
+  client.query('DELETE FROM users WHERE id = $1', [req.params.id], function(err, results) {
+    console.log(req.body.sid);
+    done();
+    if (err) {
+      console.error('Error with query', err);
+    }
+    next();
+  });
+
+});
+}
+
 
 
 
@@ -212,3 +231,4 @@ module.exports.getUserList = getUserList;
 module.exports.editShow = editShow;
 module.exports.getShowDetails = getShowDetails;
 module.exports.deleteShow = deleteShow;
+module.exports.deleteAccount = deleteAccount;
