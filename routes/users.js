@@ -9,7 +9,8 @@ users.use(function(req, res, next) {
   if (req.session.user) {
     next()
   } else {
-    res.status(401).json({succes: false, data: 'not logged in'})
+    res.status(401);
+    res.render('error.html.ejs')
   }
 })
 
@@ -47,9 +48,6 @@ users.get('/:id/allshows', db.getShowDetails, function(req,res){
   var id = req.params.id;
   res.render('lists/allshows.html.ejs', {user : res.user[0]})
 })
-
-
-
 
 
 module.exports = users;
