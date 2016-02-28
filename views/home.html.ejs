@@ -16,6 +16,13 @@
         <div>
           <div><%= users.name %></div>
           <div><%= users.bio %></div>
+          <div>
+            <% console.log(users) %>
+            <form action="/users/<%=users.id%>/" method="GET">
+              <input type="hidden" name="uid" value="<%= users.id %>">
+              <button>See Profile</button>
+            </form>
+          </div>
         </div>
       <% }) %>
     </div>

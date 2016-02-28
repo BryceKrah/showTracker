@@ -78,7 +78,7 @@ function showAllUsers(req,res,next){
       return res.status(500).json({success: false, data: err})
     }
 
-    var query = client.query('SELECT name,bio FROM users ORDER BY id', function(err, results) {
+    var query = client.query('SELECT id,name,bio FROM users ORDER BY id', function(err, results) {
       done();
 
       if (err) {
