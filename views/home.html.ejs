@@ -19,7 +19,6 @@
           <div>
             <% console.log(users) %>
             <form action="/users/<%=users.id%>/" method="GET">
-              <input type="hidden" name="uid" value="<%= users.id %>">
               <button>See Profile</button>
             </form>
           </div>
@@ -30,15 +29,15 @@
 
 
   <div>
-    <a href="/users/new">Signup</a>
+    <a href="/new">Signup</a>
   </div>
 
   <div>
-    <a href="/users/login">Login</a>
+    <a href="/login">Login</a>
   </div>
 
   <div>
-    <form action="users/logout?_method=DELETE" method="post">
+    <form action="/logout?_method=DELETE" method="post">
       <button>Logout</button>
     </form>
   </div>

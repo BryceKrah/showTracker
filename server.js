@@ -38,6 +38,36 @@ app.get('/', db.showAllUsers, function(req, res) {
   res.render('home.html.ejs', { user : res.users});
 })
 
+
+// user login,logout,sign up routes
+app.get('/', function(req,res){
+  res.render('./users/profile.html.ejs', { user : req.session.user})
+})
+
+app.post('/', db.createUser, function(req, res){
+  res.redirect('/login');
+})
+
+app.get('/new', function(req, res) {
+  res.render('./users/new.html.ejs')
+})
+
+app.get('/login', function(req, res) {
+  res.render('./users/login.html.ejs');
+})
+
+app.post('/login', db.loginUser, function(req, res) {
+  req.session.user = res.rows
+  req.session.save(function() {
+    res.redirect('/')
+  });
+})
+app.delete('/logout', function(req, res) {
+  req.session.destroy(function(err){
+    res.redirect('/');
+  })
+})
+
 app.use('/users', userRoutes)
 
  //
