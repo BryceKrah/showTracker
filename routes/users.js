@@ -55,10 +55,23 @@ users.get('/:id/editshow', function(req,res){
   var id = req.params.id;
   res.render('./lists/editshow.html.ejs', {id : id})
 });
+users.delete('/:id/editshow', db.deleteShow, function(req,res){
+  var id = req.params.id;
+  res.redirect('/users/'+id)
+})
 users.put('/:id/favlist', db.editShow, function(req,res){
   var id = req.params.id;
   res.redirect('/users/'+id)
 });
+
+
+users.get('/:id/allshows', db.getShowDetails, function(req,res){
+  var id = req.params.id;
+  res.render('lists/allshows.html.ejs', {user : res.user[0]})
+})
+
+
+
 
 
 module.exports = users;
