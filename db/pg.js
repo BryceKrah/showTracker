@@ -1,10 +1,14 @@
 var pg = require('pg');
-var connectionString = "postgres://Bryce:db_password@localhost/showTracker";
 var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
 var session = require('express-session');
-var dotenv = require('dotenv')
+var dotenv = require('dotenv');
 
+if(process.env.ENVIRONMENT === 'production'){
+  var connectionString = process.env.DATABASE_URL;
+} else {
+  var connectionString = "postgres://Bryce:db_password@localhost/showTracker";
+}
 
 function loginUser(req, res, next) {
     var email = req.body.email;

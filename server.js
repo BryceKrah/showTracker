@@ -3,7 +3,6 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
 var pg = require('pg');
-var connectionString = "postgres://Bryce:db_password@localhost/showTracker";
 var session = require('express-session');
 var pgSession = require('connect-pg-simple')(session);
 var path = require('path');
@@ -14,6 +13,13 @@ var db = require('./db/pg');
 var app = express();
 
 var userRoutes = require( path.join(__dirname, '/routes/users'));
+
+if(process.env.ENVIRONMENT === 'production'){
+  var connectionString = process.env.DATABASE_URL;
+} else {
+  var connectionString = "postgres://Bryce:db_password@localhost/showTracker";
+}
+
 
 app.use(session({
   store: new pgSession({
