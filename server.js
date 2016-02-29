@@ -7,6 +7,7 @@ var session = require('express-session');
 var pgSession = require('connect-pg-simple')(session);
 var path = require('path');
 var methodOverride = require('method-override');
+var request = require('request');
 
 var db = require('./db/pg');
 var app = express();
@@ -33,6 +34,7 @@ app.use(methodOverride('_method'))
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', db.showAllUsers, function(req, res) {
   res.render('home.html.ejs', { user : res.users});
@@ -62,6 +64,7 @@ app.post('/login', db.loginUser, function(req, res) {
     res.redirect('/')
   });
 })
+
 app.delete('/logout', function(req, res) {
   req.session.destroy(function(err){
     res.redirect('/');
@@ -70,8 +73,6 @@ app.delete('/logout', function(req, res) {
 
 app.use('/users', userRoutes)
 
- //
- //
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port)

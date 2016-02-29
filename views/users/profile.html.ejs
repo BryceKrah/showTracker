@@ -3,61 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <title>Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-    <% if (user) { %>
-      <h3>Welcome <%= user.name %></h3>
-      <div><%= user.bio %> </div>
-      <% console.log(user)%>
-    <% } %>
+<nav class="header">
+
+      <nav class="welcome">Welcome <%= session.name %></nav>
 
 
+    <nav>
+      <form action="return" method="GET">
+        <input type="text" name="s" placeholder="Search For Shows">
+        <input type="hidden" name="type" value="series">
+        <button>Search</button>
+      </form>
+    </nav>
 
-
-    <div>
-      <form action="/users/<%=user.id%>/favlist" method="get">
-        <button>Add Show to List</button>
-      </div>
-    </form>
-
-
-
-    <div>
-      <form action="users/logout?_method=DELETE" method="post">
+    <nav>
+      <form action="/" method="get">
+        <button>Homepage</button>
+      </form>
+      <form action="/logout?_method=DELETE" method="post">
         <button>Logout</button>
       </form>
-    </div>
-    <div>
-      <form action="/" method="get">
-        <button>Go Home</button>
+      <form action="/users/<%=user.id%>/delete?_method=DELETE" method="POST">
+        <button>Delete Account</button>
       </form>
-    </div>
+      <form action="/users/<%=user.id%>/allshows" method="get">
+        <button>More Info on Shows</button>
+      </form>
+  </nav>
+</nav>
 
 
-    <h2>User :<span><%= user.name %></span></h2>
-      <h3>Shows:</h3>
+  <div class="wrapper">
+    <div class="container">
+
+    <h2><span><%= user.name %>'s Profile</span></h2>
+      <h4>Bio - <%= user.bio %></h3>
+      <h4>Shows I like:</h3>
       <ul>
         <% var num = 0 %>
         <% user.shows.forEach(function(show) { %>
-
-          <% console.log(user.showid[num] +" : "+ (user.shows[num]) + " this is user.showid[num]") %>
-          <li> <%= show %>
+          <div class="box"> <%= show %>
             <div>
               <form action="/users/<%=user.id%>/editshow" method="GET">
                 <button>Edit Show</button>
               </form>
-            </div>
-            <div>
               <form action="/users/<%=user.id%>/editshow?_method=DELETE" method="POST">
                 <input type="hidden" name="sid" value="<%= user.showid[num] %>">
                 <button>Remove Show</button>
               </form>
             </div>
-          </li>
+          </div>
           <% num++ %>
         <% }); %>
-</ul>
+    </ul>
+  </div>
 
+</div>
 </body>
 </html>

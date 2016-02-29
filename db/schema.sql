@@ -13,8 +13,9 @@ CREATE TABLE users (
 CREATE TABLE shows (
   id SERIAL PRIMARY KEY UNIQUE,
   name VARCHAR(200),
-  seasons INTEGER DEFAULT 1,
-  genre VARCHAR(20)
+  genre VARCHAR(200),
+  type VARCHAR(100),
+  poster VARCHAR(2500)
 );
 
 CREATE TABLE xref (

@@ -3,57 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <title>Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
+<nav class="header">
+
     <% if (user) { %>
-      <h3>Welcome <%= user.name %></h3>
-      <div><%= user.bio %> </div>
-      <% console.log(user)%>
+      <nav>Welcome <%= user.name %></nav>
+      <nav><%= user.bio %> </nav>
     <% } %>
+    <nav>
 
-
-    <div>
       <form action="/users/<%=user.id%>/favlist" method="get">
         <button>Add Show to List</button>
-      </div>
-    </form>
-
-    <div>
+      </form>
+      <form action="/users/<%=user.id%>/" method="GET">
+        <button>Profile</button>
+      </form>
+      <form action="/" method="get">
+        <button>Homepage</button>
+      </form>
       <form action="users/logout?_method=DELETE" method="post">
         <button>Logout</button>
       </form>
-    </div>
-    <div>
-      <form action="/" method="get">
-        <button>Go Home</button>
-      </form>
-    </div>
+    </nav>
+
+</nav>
 
 
-    <h2>User :<span><%= user.name %></span></h2>
-      <h3>Shows:</h3>
+  <div class="wrapper">
+
+  <div class="container">
+
+    <h2><span><%= user.name %>'s Favorite TV Shows</span></h2>
       <ul>
-        <% console.log(user.showid) %>
         <% var num = 0 %>
         <% user.shows.forEach(function(show) { %>
-          <li> <%= show %>
+          <div>
+
 
             <div>
-              <%= user.genre[num] %>
+              Title: <%= show %>
             </div>
             <div>
-              <%= user.seasons[num] %>
+            Genre:  <%= user.genre[num] %>
             </div>
+            <img src="<%= user.poster[num] %>">
             <div>
               <form action="/users/<%=user.id%>/editshow" method="GET">
                 <button>Edit Show</button>
               </form>
             </div>
-          </li>
+          </div>
         <% num++ %>
         <% }); %>
-</ul>
+    </ul>
+    </div>
+    </div>
 
 </body>
 </html>

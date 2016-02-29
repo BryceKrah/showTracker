@@ -3,10 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Favorites List</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-<h1>Edit Your Favorite TV Shows</h1>
+<nav class="header">
+  <nav>Edit Your Favorite TV Shows</nav>
+  <nav>
+    <form action="/" method="get">
+      <button>Homepage</button>
+    </form>
+    <form action="/logout?_method=DELETE" method="post">
+      <button>Logout</button>
+    </form>
+  </nav>
+</nav>
+
+<div class="wrapper">
+
+  <div class="container">
 
   <form action="/users/<%=id%>/favlist?_method=PUT" method="POST">
     <div>
@@ -18,14 +34,18 @@
       <input type="text" name="genre">
     </div>
     <div>
-      <label for="seasons">Number of Seasons</label>
-      <input type="text" name="seasons">
+      <label for="seasons">Type</label>
+      <input type="text" name="type">
     </div>
-  </div>
+    <div>
+      <label for="poster">Poster Link</label>
+      <input type="text" name="poster">
+    </div>
 
     <button type="submit">Submit</button>
-
   </form>
+  </div>
+</div>
 
 </body>
 </html>
