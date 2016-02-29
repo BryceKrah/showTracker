@@ -110,6 +110,14 @@ form{
   padding: 15px;
   margin: 8px;
 }
+.card{
+  background-color: rgba(0,0,0,0.75);
+  color: white;
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid black;
+  font-size: 30px;
+}
 img{
   height: 200px;
   width: 180px;
