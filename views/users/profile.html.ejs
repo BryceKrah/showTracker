@@ -47,7 +47,7 @@
       <ul class="container-four">
         <% var num = 0 %>
         <% user.shows.forEach(function(show) { %>
-          <div class="box"> <%= show %>
+          <div class="card"> <%= show %>
             <div>
               <form action="/users/<%=user.id%>/editshow" method="GET">
                 <button>Edit Show</button>

@@ -10,7 +10,7 @@
 
   <nav class="header">
     <nav>ShowTracker</nav>
-    
+
     <form action="/new" method="get">
       <button class="nav-btn">Signup</button>
     </form>
@@ -25,7 +25,7 @@
     <div class="wrapper">
       <div class="container">
       <% user.forEach(function(users) { %>
-          <div>
+          <div class="card">
           <div><%= users.name %> - <%= users.bio %></div>
           <div>
             <form action="/users/<%=users.id%>/" method="GET">

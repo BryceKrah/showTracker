@@ -19,31 +19,31 @@
 </nav>
 
 
-  <div class="wrapper">
-    <div class="container">
+  <div class="container-two">
 
     <% body.Search.forEach(function(show){ %>
-        <%= show.Title %>
-        <%= show.Year %>
-        <%= show.Type %>
-        <img class="container" src="<%= show.Poster %>">
+      <div class="card">
+        <div>
+          <%= show.Title %>
+        </div>
+        <div>
+          <%= show.Year %>
+        </div>
+        <div>
+          <%= show.Type %>
+        </div>
+        <img src="<%= show.Poster %>">
+        <div>
+
         <form class="form" action="users/<%=user.id%>/list" method="POST">
             <input type="hidden" name="name" value="<%= show.Title %>">
             <input type="hidden" name="type" value="<%= show.Type %>">
             <input type="hidden" name="poster" value="<%= show.Poster %>">
             <button id="submit" type="submit" class="btn">Add Show</button>
         </form>
+        </div>
       </div>
   <% }) %>
-
-
-
-
-
-
-
-
-
 
   </div>
 
