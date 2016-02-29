@@ -3,11 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>User Login</title>
+  <link rel="stylesheet" href="/css/style.css">
   <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-  <h1>Login!</h1>
+<nav class="header">
+    <div class="welcome">Login!</div>
+    <nav class="middle">
+      <form action="/" method="get">
+        <button>Go Home</button>
+      </form>
+    </nav>
+</nav>
+  <div class="wrapper">
+
+  <div class="container">
 
     <form action="/login" method="POST">
       <div>
@@ -23,11 +34,8 @@
       <button type="submit">Submit</button>
     </form>
 
-    <div>
-      <form action="/" method="get">
-        <button>Go Home</button>
-      </form>
-    </div>
+  </div>
+</div>
 
 </body>
 </html>

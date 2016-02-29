@@ -7,12 +7,22 @@
   <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <h1>Search Results Page</h1>
+
+  <nav class="header">
+
+  <nav>Search Results Page</nav>
+  <nav>
+    <form action="/" method="get">
+      <button>Homepage</button>
+    </form>
+  </nav>
+</nav>
+
+
   <div class="wrapper">
+    <div class="container">
 
-  <% body.Search.forEach(function(show){ %>
-
-      <div class="container display">
+    <% body.Search.forEach(function(show){ %>
         <%= show.Title %>
         <%= show.Year %>
         <%= show.Type %>
@@ -21,20 +31,13 @@
             <input type="hidden" name="name" value="<%= show.Title %>">
             <input type="hidden" name="type" value="<%= show.Type %>">
             <input type="hidden" name="poster" value="<%= show.Poster %>">
-            <input type="hidden" name="genre" value="<%= show.Genre %>">
             <button id="submit" type="submit" class="btn">Add Show</button>
         </form>
       </div>
   <% }) %>
 
 
-  <aside class="aside aside-1">
-    <div>
-      <form action="/" method="get">
-        <button>Homepage</button>
-      </form>
-  </aside>
-  <aside class="aside aside-2">some more stuff</aside>
+
 
 
 

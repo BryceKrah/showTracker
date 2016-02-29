@@ -16,8 +16,7 @@ users.use(function(req, res, next) {
 
 users.get('/:id', db.getUserList, function(req,res){
   var id = req.params.id
-  res.render('users/profile.html.ejs', {user: res.user[0],
-                                        session: req.session.user});
+  res.render('users/profile.html.ejs', {user: res.user[0], session: req.session.user});
 });
 
 users.get('/:id/favlist', function(req,res){

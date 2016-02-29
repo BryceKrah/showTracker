@@ -39,12 +39,12 @@
 
 
   <div class="wrapper">
-    <div class="container">
+    <div class="container-three">
+    <span class="big"><%= user.name %>'s Profile</span>
+      <div>Bio - <%= user.bio %></div>
+      <div>Shows I like:</div>
 
-    <h2><span><%= user.name %>'s Profile</span></h2>
-      <h4>Bio - <%= user.bio %></h3>
-      <h4>Shows I like:</h3>
-      <ul>
+      <ul class="container-four">
         <% var num = 0 %>
         <% user.shows.forEach(function(show) { %>
           <div class="box"> <%= show %>
@@ -61,8 +61,7 @@
           <% num++ %>
         <% }); %>
     </ul>
-  </div>
-
+    </div>
 </div>
 </body>
 </html>
