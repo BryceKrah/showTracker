@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Favorites List</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<h1>List Your Favorite TV Shows</h1>
+
+  <form action="/users/<%=id%>/favlist" method="POST">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" name="name">
+    </div>
+    <div>
+      <label for="genre">Genre</label>
+      <input type="text" name="genre">
+    </div>
+    <input type="hidden" name="id" value=<%=id%>>
+    <div>
+      <label for="seasons">Number of Seasons</label>
+      <input type="text" name="seasons">
+    </div>
+
+    <button type="submit">Submit</button>
+
+  </form>
+
+</body>
+</html>

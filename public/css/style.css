@@ -1,0 +1,121 @@
+* {
+  font-family: 'Amatic SC', cursive;
+}
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.middle{
+  margin-left: 30px;
+
+}
+
+.wrapper > * {
+  padding: 10px;
+  flex: 1 100%;
+}
+
+input{
+  font-size: 25px;
+}
+
+.header {
+  background: black;
+  padding: 3px;
+  margin-top: -8px;
+  margin-left: -3px;
+  color: white;
+  text-align: center;
+}
+
+nav>.welcome{
+  font-size: 50px;
+}
+
+nav {
+  font-size: 40px;
+  display: inline-flex;
+  width: 100%;
+}
+
+body{
+  background: url("https://images.unsplash.com/photo-1438109519352-a52c41243c1a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=08f156a8735072ae58c13c679194297c");
+  background-size: cover;
+}
+
+.container {
+  font-size: 30px;
+  text-align: left;
+  text-align: center;
+  margin-right: 40px;
+
+}
+
+.container-two{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container-three{
+  font-size: 30px;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container-four{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.big{
+  font-size: 40px;
+}
+
+button{
+  font-size: 20px;
+  border-radius: 10px;
+  margin-top: 5px;
+  background-color: white;
+  cursor: pointer;
+  cursor: hand;
+}
+
+
+nav>.nav-btn{
+  font-size: 18px;
+  background-color: white;
+}
+
+.error{
+  font-size: 60px;
+  text-align: center;
+}
+
+.welcome{
+  font-size: 20px;
+  color: white;
+}
+
+form{
+  display: inline;
+}
+
+.box{
+  padding: 15px;
+  margin: 8px;
+}
+img{
+  height: 200px;
+  width: 180px;
+}
+
+.display{
+  height: 400px;
+  width: 200px;
+}

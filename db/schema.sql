@@ -1,0 +1,25 @@
+DROP TABLE if EXISTS users CASCADE;
+DROP TABLE if EXISTS shows CASCADE;
+DROP TABLE if EXISTS xref CASCADE;
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY UNIQUE,
+  name VARCHAR(200),
+  email VARCHAR(200),
+  password_digest TEXT,
+  bio VARCHAR(140)
+);
+
+CREATE TABLE shows (
+  id SERIAL PRIMARY KEY UNIQUE,
+  name VARCHAR(200),
+  genre VARCHAR(200),
+  type VARCHAR(100),
+  poster VARCHAR(2500)
+);
+
+CREATE TABLE xref (
+  user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
+  show_id INTEGER REFERENCES shows (id) ON DELETE CASCADE,
+  PRIMARY KEY (user_id, show_id)
+);

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<nav class="header">
+
+    <% if (user) { %>
+      <nav> <%= user.name + " - " + user.bio %> </nav>
+    <% } %>
+
+    <nav>
+      <form action="return" method="GET">
+        <input type="text" name="s" placeholder="Search For Shows">
+        <input type="hidden" name="type" value="series">
+        <button>Search</button>
+      </form>
+    </nav>
+
+    <nav>
+
+      <form action="/users/<%=user.id%>/" method="GET">
+        <button>Profile</button>
+      </form>
+      <form action="/" method="get">
+        <button>Homepage</button>
+      </form>
+      <form action="users/logout?_method=DELETE" method="post">
+        <button>Logout</button>
+      </form>
+    </nav>
+
+</nav>
+
+
+  <div class="wrapper">
+
+  <div class="container">
+
+    <h2><span><%= user.name %>'s Favorite TV Shows</span></h2>
+      <ul class="container-two">
+        <% var num = 0 %>
+        <% user.shows.forEach(function(show) { %>
+          <div>
+            <div>
+              Title: <%= show %>
+            </div>
+            <div>
+              Type: <%= user.type[num] %>
+            </div>
+            <img src="<%= user.poster[num] %>">
+            <div>
+              <form action="/users/<%=user.id%>/editshow" method="GET">
+                <button>Edit Show</button>
+              </form>
+            </div>
+          </div>
+        <% num++ %>
+        <% }); %>
+    </ul>
+    </div>
+    </div>
+
+</body>
+</html>

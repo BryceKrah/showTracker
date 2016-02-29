@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+  <nav class="header">
+
+  <nav>Search Results Page</nav>
+  <nav>
+    <form action="/" method="get">
+      <button>Homepage</button>
+    </form>
+  </nav>
+</nav>
+
+
+  <div class="wrapper">
+    <div class="container">
+
+    <% body.Search.forEach(function(show){ %>
+        <%= show.Title %>
+        <%= show.Year %>
+        <%= show.Type %>
+        <img class="container" src="<%= show.Poster %>">
+        <form class="form" action="users/<%=user.id%>/list" method="POST">
+            <input type="hidden" name="name" value="<%= show.Title %>">
+            <input type="hidden" name="type" value="<%= show.Type %>">
+            <input type="hidden" name="poster" value="<%= show.Poster %>">
+            <button id="submit" type="submit" class="btn">Add Show</button>
+        </form>
+      </div>
+  <% }) %>
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<nav class="header">
+
+      <nav class="welcome">Welcome <%= session.name %></nav>
+
+
+    <nav>
+      <form action="return" method="GET">
+        <input type="text" name="s" placeholder="Search For Shows">
+        <input type="hidden" name="type" value="series">
+        <button>Search</button>
+      </form>
+    </nav>
+
+    <nav>
+      <form action="/" method="get">
+        <button>Homepage</button>
+      </form>
+      <form action="/logout?_method=DELETE" method="post">
+        <button>Logout</button>
+      </form>
+      <form action="/users/<%=user.id%>/delete?_method=DELETE" method="POST">
+        <button>Delete Account</button>
+      </form>
+      <form action="/users/<%=user.id%>/allshows" method="get">
+        <button>More Info on Shows</button>
+      </form>
+  </nav>
+</nav>
+
+
+  <div class="wrapper">
+    <div class="container-three">
+    <span class="big"><%= user.name %>'s Profile</span>
+      <div>Bio - <%= user.bio %></div>
+      <div>Shows I like:</div>
+
+      <ul class="container-four">
+        <% var num = 0 %>
+        <% user.shows.forEach(function(show) { %>
+          <div class="box"> <%= show %>
+            <div>
+              <form action="/users/<%=user.id%>/editshow" method="GET">
+                <button>Edit Show</button>
+              </form>
+              <form action="/users/<%=user.id%>/editshow?_method=DELETE" method="POST">
+                <input type="hidden" name="sid" value="<%= user.showid[num] %>">
+                <button>Remove Show</button>
+              </form>
+            </div>
+          </div>
+          <% num++ %>
+        <% }); %>
+    </ul>
+    </div>
+</div>
+</body>
+</html>

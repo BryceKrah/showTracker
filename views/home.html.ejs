@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+  <nav class="header">
+    <nav>ShowTracker</nav>
+    
+    <form action="/new" method="get">
+      <button class="nav-btn">Signup</button>
+    </form>
+    <form action="/login" method="get">
+      <button class="nav-btn">Login</button>
+    </form>
+    <form action="/logout?_method=DELETE" method="post">
+      <button class="nav-btn">Logout</button>
+    </form>
+  </nav>
+    <!-- <h1 class="header">ShowTracker</h1> -->
+    <div class="wrapper">
+      <div class="container">
+      <% user.forEach(function(users) { %>
+          <div>
+          <div><%= users.name %> - <%= users.bio %></div>
+          <div>
+            <form action="/users/<%=users.id%>/" method="GET">
+              <button>View Profile</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+
+</div> <!-- end of wrapper -->
+
+</body>
+</html>
