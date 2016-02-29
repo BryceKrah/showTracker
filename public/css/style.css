@@ -1,3 +1,6 @@
+* {
+  font-family: 'Amatic SC', cursive;
+}
 .wrapper {
   display: flex;
   flex-wrap: nowrap;
@@ -9,43 +12,53 @@
   flex: 1 100%;
 }
 
+input{
+  font-size: 25px;
+}
+
 .header {
-  background: gray;
+  background: black;
+  padding: 3px;
+  margin-top: -8px;
+  margin-left: -3px;
   color: white;
   text-align: center;
 }
 
+nav>.welcome{
+  font-size: 50px;
+}
+
+nav {
+  font-size: 40px;
+  display: inline-flex;
+  width: 100%;
+}
+
 body{
-  background-color: gray;
+  background: url("https://images.unsplash.com/photo-1438109519352-a52c41243c1a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=08f156a8735072ae58c13c679194297c");
+  background-size: cover;
 }
 
 .container {
   font-size: 30px;
   text-align: left;
-  background: white;
   order: 2;
   text-align: center;
+  margin-right: 40px;
 }
 
-.aside-1 {
-  background: darkred;
-  order: 1;
-}
-
-.aside-2 {
-  background: darkred;
-  order: 3;
-}
-
-.aside{
-  flex: 1 auto;
-  text-align: center;
-}
 
 button{
   font-size: 20px;
   border-radius: 10px;
   margin-top: 5px;
+  background-color: white;
+}
+
+nav>.nav-btn{
+  font-size: 18px;
+  background-color: white;
 }
 
 .error{

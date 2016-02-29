@@ -4,10 +4,24 @@
   <meta charset="UTF-8">
   <title>Home</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-    <h1 class="header">ShowTracker</h1>
+  <nav class="header">
+    <nav>ShowTracker</nav>
+    
+    <form action="/new" method="get">
+      <button class="nav-btn">Signup</button>
+    </form>
+    <form action="/login" method="get">
+      <button class="nav-btn">Login</button>
+    </form>
+    <form action="/logout?_method=DELETE" method="post">
+      <button class="nav-btn">Logout</button>
+    </form>
+  </nav>
+    <!-- <h1 class="header">ShowTracker</h1> -->
     <div class="wrapper">
       <div class="container">
       <% user.forEach(function(users) { %>
@@ -22,30 +36,6 @@
       <% }) %>
     </div>
 
-
-  <aside class="aside aside-1">
-  <div>
-    <form action="/new" method="get">
-      <button>Signup</button>
-    </form>
-  </div>
-
-  <div>
-    <form action="/login" method="get">
-      <button>Login</button>
-    </form>
-  </div>
-
-  <div>
-    <form action="/logout?_method=DELETE" method="post">
-      <button>Logout</button>
-    </form>
-  </div>
-  </aside>
-
-  <aside class="aside aside-2">
-    <div>something here</div>
-  </aside>
 
 </div> <!-- end of wrapper -->
 

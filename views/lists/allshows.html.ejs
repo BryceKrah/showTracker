@@ -4,41 +4,36 @@
   <meta charset="UTF-8">
   <title>Profile</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
+<nav class="header">
+
     <% if (user) { %>
-      <h3>Welcome <%= user.name %></h3>
-      <div><%= user.bio %> </div>
+      <nav>Welcome <%= user.name %></nav>
+      <nav><%= user.bio %> </nav>
     <% } %>
+    <nav>
 
-    <div class="wrapper">
-    <div class="aside aside-1">
-
-    <div>
       <form action="/users/<%=user.id%>/favlist" method="get">
         <button>Add Show to List</button>
       </form>
-    </div>
-
-    <div>
       <form action="/users/<%=user.id%>/" method="GET">
         <button>Profile</button>
       </form>
-    </div>
-
-    <div>
       <form action="/" method="get">
         <button>Homepage</button>
       </form>
-    </div>
-
-    <div>
       <form action="users/logout?_method=DELETE" method="post">
         <button>Logout</button>
       </form>
-    </div>
-  </div>
+    </nav>
+
+</nav>
+
+
+  <div class="wrapper">
 
   <div class="container">
 
@@ -64,10 +59,9 @@
           </div>
         <% num++ %>
         <% }); %>
-</ul>
-</div>
-  <aside class="aside aside-2">something can go here</aside>
+    </ul>
+    </div>
+    </div>
 
-</div>
 </body>
 </html>

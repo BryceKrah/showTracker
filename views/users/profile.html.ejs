@@ -4,49 +4,45 @@
   <meta charset="UTF-8">
   <title>Profile</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
+<nav class="header">
 
-    <% if (user) { %>
-      <h3 class="welcome">Welcome <%= user.name %></h3>
-    <% } %>
+      <nav class="welcome">Welcome <%= user.name %></nav>
 
+
+    <nav>
+      <form action="return" method="GET">
+        <input type="text" name="s" placeholder="Search For Shows">
+        <input type="hidden" name="type" value="series">
+        <button>Search</button>
+      </form>
+    </nav>
+
+    <nav>
+      <form action="/" method="get">
+        <button>Homepage</button>
+      </form>
+      <form action="/logout?_method=DELETE" method="post">
+        <button>Logout</button>
+      </form>
+      <form action="/users/<%=user.id%>/delete?_method=DELETE" method="POST">
+        <button>Delete Account</button>
+      </form>
+      <form action="/users/<%=user.id%>/allshows" method="get">
+        <button>More Info on Shows</button>
+      </form>
+  </nav>
+</nav>
 
 
   <div class="wrapper">
 
-    <aside class="aside aside-2">
-      <div>
-        <form action="/" method="get">
-          <button>Homepage</button>
-        </form>
-      </div>
-    <div>
-      <form action="users/logout?_method=DELETE" method="post">
-        <button>Logout</button>
-      </form>
-    </div>
-    <div>
-      <form action="/users/<%=user.id%>/delete?_method=DELETE" method="POST">
-        <button>Delete Account</button>
-      </form>
-    </div>
-  </aside>
 
-  <aside class="aside aside-1">
-    <div>
-      <form action="/users/<%=user.id%>/allshows" method="get">
-        <button>More Info on Shows</button>
-      </form>
-    </div>
 
-    <div>
-      <form action="/users/<%=user.id%>/search" method="get">
-        <button>Add Show to List</button>
-    </form>
-    </div>
-  </aside>
+
 
   <div class="container">
 

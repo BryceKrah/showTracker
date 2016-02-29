@@ -139,7 +139,7 @@ function editShow(req, res, next) {
       console.log(err);
       res.status(500).json({success: false, data: err});
     }
-    client.query('UPDATE shows SET name = $1, seasons = $3, genre = $4 WHERE id = $2', [req.body.name, req.params.id, req.body.seasons, req.body.genre], (err, results) => {
+    client.query('UPDATE shows SET name = $1, type = $3, genre = $4 WHERE id = $2', [req.body.name, req.params.id, req.body.type, req.body.genre], (err, results) => {
       done();
       if (err) {
         console.error('Error with query', err);
