@@ -3,7 +3,7 @@
 }
 .wrapper {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: stretch;
 }
 
@@ -48,18 +48,44 @@ body{
 .container {
   font-size: 30px;
   text-align: left;
-  order: 2;
   text-align: center;
   margin-right: 40px;
+
 }
 
+.container-two{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container-three{
+  font-size: 30px;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container-four{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.big{
+  font-size: 40px;
+}
 
 button{
   font-size: 20px;
   border-radius: 10px;
   margin-top: 5px;
   background-color: white;
+  cursor: pointer;
+  cursor: hand;
 }
+
 
 nav>.nav-btn{
   font-size: 18px;
@@ -88,6 +114,7 @@ img{
   height: 200px;
   width: 180px;
 }
+
 .display{
   height: 400px;
   width: 200px;
