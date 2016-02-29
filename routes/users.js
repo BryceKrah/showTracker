@@ -2,7 +2,7 @@ var express = require('express');
 var users = express.Router();
 var bodyParser = require('body-parser');
 var db = require('./../db/pg');
-
+var request = require('request');
 
 users.use(function(req, res, next) {
   console.log(req.session)
@@ -53,6 +53,26 @@ users.get('/:id/allshows', db.getShowDetails, function(req,res){
   var id = req.params.id;
   res.render('lists/allshows.html.ejs', {user : res.user[0]})
 })
+
+users.get('/:id/search', function(req,res){
+  res.render('api/search.html.ejs')
+})
+
+users.get('/:id/return', db.getShowDetails, function(req, res){
+          request({url: 'http://www.omdbapi.com/',
+                   qs: req.query,
+                   json: true}, function(err, apires, body) {
+                       res.render('api/results.html.ejs', {body : body,
+                                                          user : res.user[0]});
+          });
+})
+
+users.post('/:id/users/:id/list', db.addShowToFavList, function(req,res){
+  var id = req.params.id;
+  res.redirect('/users/'+id)
+})
+
+
 
 
 module.exports = users;

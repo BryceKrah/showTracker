@@ -7,6 +7,7 @@ var session = require('express-session');
 var pgSession = require('connect-pg-simple')(session);
 var path = require('path');
 var methodOverride = require('method-override');
+var request = require('request');
 
 var db = require('./db/pg');
 var app = express();

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Search Results Page</h1>
+  <div class="wrapper">
+
+  <% body.Search.forEach(function(show){ %>
+
+      <div class="container display">
+        <%= show.Title %>
+        <%= show.Year %>
+        <%= show.Type %>
+        <img class="container" src="<%= show.Poster %>">
+        <form class="form" action="users/<%=user.id%>/list" method="POST">
+            <input type="hidden" name="name" value="<%= show.Title %>">
+            <input type="hidden" name="type" value="<%= show.Type %>">
+            <input type="hidden" name="poster" value="<%= show.Poster %>">
+            <input type="hidden" name="year" value="<%= show.Year %>">
+            <button id="submit" type="submit" class="btn">ADD MOVIE</button>
+        </form>
+      </div>
+  <% }) %>
+
+  <aside class="aside aside-1">
+    <div>
+      <form action="/" method="get">
+        <button>Homepage</button>
+      </form>
+  </aside>
+  <aside class="aside aside-2">some more stuff</aside>
+
+<% console.log(user.id) %>
+
+
+
+
+
+  </div>
+
+</body>
+</html>

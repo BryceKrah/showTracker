@@ -1,12 +1,12 @@
 .wrapper {
   display: flex;
   flex-wrap: nowrap;
+  align-items: stretch;
 }
 
 .wrapper > * {
   padding: 10px;
   flex: 1 100%;
-  height: 2000px;
 }
 
 .header {
@@ -25,7 +25,6 @@ body{
   background: white;
   order: 2;
   text-align: center;
-
 }
 
 .aside-1 {
@@ -57,4 +56,21 @@ button{
 .welcome{
   font-size: 20px;
   color: white;
+}
+
+form{
+  display: inline;
+}
+
+.box{
+  padding: 15px;
+  margin: 8px;
+}
+img{
+  height: 200px;
+  width: 180px;
+}
+.display{
+  height: 400px;
+  width: 200px;
 }
