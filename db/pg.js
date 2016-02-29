@@ -96,7 +96,7 @@ function addShowToFavList(req,res,next){
     }
     if(parseInt(req.session.user.id) !== parseInt(req.params.id)){
       done()
-      return res.status(500).json({success: false, data: err})
+      return res.status(500).render('./error.html.ejs')
     }
     var query = client.query("INSERT INTO shows (name,genre,type,poster) VALUES ($1,$2,$3,$4) RETURNING id;", [req.body.name, req.body.genre, req.body.type, req.body.poster], function(err, results) {
       done();
@@ -142,6 +142,10 @@ function editShow(req, res, next) {
       console.log(err);
       res.status(500).json({success: false, data: err});
     }
+    if(parseInt(req.session.user.id) !== parseInt(req.params.id)){
+      done()
+      return res.status(500).render('./error.html.ejs')
+    }
     client.query('UPDATE shows SET name = $1, type = $3, genre = $4 WHERE id = $2', [req.body.name, req.params.id, req.body.type, req.body.genre], (err, results) => {
       done();
       if (err) {
@@ -180,7 +184,10 @@ function deleteShow(req,res,next){
     console.log(err);
     res.status(500).json({success: false, data: err});
   }
-  console.log(req.body.sid);
+  if(parseInt(req.session.user.id) !== parseInt(req.params.id)){
+    done()
+    return res.status(500).render('./error.html.ejs')
+  }
   client.query('DELETE FROM xref WHERE user_id = $1 AND show_id = $2', [req.params.id, req.body.sid], function(err, results) {
     console.log(req.body.sid);
     done();
@@ -198,6 +205,10 @@ function deleteAccount(req,res,next){
     done();
     console.log(err);
     res.status(500).json({success: false, data: err});
+  }
+  if(parseInt(req.session.user.id) !== parseInt(req.params.id)){
+    done()
+    return res.status(500).render('./error.html.ejs')
   }
   client.query('DELETE FROM users WHERE id = $1', [req.params.id], function(err, results) {
     console.log(req.body.sid);
