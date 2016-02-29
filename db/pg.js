@@ -1,8 +1,9 @@
 var pg = require('pg');
-var connectionString = "postgres://Bryce:baseball@localhost/showTracker";
+var connectionString = "postgres://Bryce:db_password@localhost/showTracker";
 var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
 var session = require('express-session');
+var dotenv = require('dotenv')
 
 
 function loginUser(req, res, next) {
