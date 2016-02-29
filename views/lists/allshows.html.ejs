@@ -55,9 +55,7 @@
             <div>
             Genre:  <%= user.genre[num] %>
             </div>
-            <div>
-            Seasons:  <%= user.seasons[num] %>
-            </div>
+            <img src="<%= user.poster[num] %>">
             <div>
               <form action="/users/<%=user.id%>/editshow" method="GET">
                 <button>Edit Show</button>

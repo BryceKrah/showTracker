@@ -95,7 +95,7 @@ function addShowToFavList(req,res,next){
       return res.status(500).json({success: false, data: err})
     }
     console.log(req.body.name, req.body.poster, req.body.year);
-    var query = client.query("INSERT INTO shows (name,genre,seasons) VALUES ($1,$2,$3) RETURNING id;", [req.body.name, req.body.poster, parseInt(req.body.year)], function(err, results) {
+    var query = client.query("INSERT INTO shows (name,genre,type,poster) VALUES ($1,$2,$3,$4) RETURNING id;", [req.body.name, req.body.genre, req.body.type, req.body.poster], function(err, results) {
       done();
       if (err) {
         console.error('Error with query', err);
@@ -159,7 +159,7 @@ function getShowDetails(req, res, next) {
       console.log(err);
       res.status(500).json({success: false, data: err});
     }
-    client.query('SELECT users.id as id, users.name as name, users.bio as bio, array_agg(shows.name) as shows, array_agg(shows.genre) as genre, array_agg(shows.seasons) as seasons, array_agg(shows.id) as showID FROM users LEFT JOIN xref on xref.user_id = users.id LEFT JOIN shows on xref.show_id = shows.id WHERE users.id = $1 GROUP BY users.name, users.id;', [req.params.id], function(err, results) {
+    client.query('SELECT users.id as id, users.name as name, users.bio as bio, array_agg(shows.name) as shows, array_agg(shows.genre) as genre, array_agg(shows.type) as type, array_agg(shows.id) as showID, array_agg(shows.poster) as poster FROM users LEFT JOIN xref on xref.user_id = users.id LEFT JOIN shows on xref.show_id = shows.id WHERE users.id = $1 GROUP BY users.name, users.id;', [req.params.id], function(err, results) {
       done();
       if (err) {
         console.error('Error with query', err);
