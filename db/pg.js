@@ -94,7 +94,10 @@ function addShowToFavList(req,res,next){
       console.log(err)
       return res.status(500).json({success: false, data: err})
     }
-    console.log(req.body.name, req.body.poster, req.body.year);
+    if(parseInt(req.session.user.id) !== parseInt(req.params.id)){
+      done()
+      return res.status(500).json({success: false, data: err})
+    }
     var query = client.query("INSERT INTO shows (name,genre,type,poster) VALUES ($1,$2,$3,$4) RETURNING id;", [req.body.name, req.body.genre, req.body.type, req.body.poster], function(err, results) {
       done();
       if (err) {

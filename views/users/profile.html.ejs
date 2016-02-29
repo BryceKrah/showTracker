@@ -10,7 +10,7 @@
 
 <nav class="header">
 
-      <nav class="welcome">Welcome <%= user.name %></nav>
+      <nav class="welcome">Welcome <%= session.name %></nav>
 
 
     <nav>
@@ -39,12 +39,7 @@
 
 
   <div class="wrapper">
-
-
-
-
-
-  <div class="container">
+    <div class="container">
 
     <h2><span><%= user.name %>'s Profile</span></h2>
       <h4>Bio - <%= user.bio %></h3>
@@ -65,8 +60,8 @@
           </div>
           <% num++ %>
         <% }); %>
-</ul>
-</div>
+    </ul>
+  </div>
 
 </div>
 </body>
