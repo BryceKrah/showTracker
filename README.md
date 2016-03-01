@@ -1,5 +1,7 @@
 # showTracker
 
+link to page https://vast-temple-65521.herokuapp.com/
+
 This is a full CRUD application called showTracker.
 
 Once you are signed up search for TV shows, and add your favorite ones to your own personal list.
