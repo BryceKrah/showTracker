@@ -10,7 +10,11 @@
 
 <nav class="header">
 
-      <nav class="welcome">Welcome <%= session.name %></nav>
+      <nav class="welcome">Welcome
+          <% if (session) { %>
+            <%= session.name %>
+          <% } %>
+      </nav>
 
 
     <nav>

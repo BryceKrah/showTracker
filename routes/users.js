@@ -4,8 +4,15 @@ var bodyParser = require('body-parser');
 var db = require('./../db/pg');
 var request = require('request');
 
+// show user profile page
+users.get('/:id', db.getShowDetails, function(req,res){
+  var id = req.params.id;
+  res.render('lists/allshows.html.ejs', {user : res.user[0]})
+})
+
+
+// session checker
 users.use(function(req, res, next) {
-  console.log(req.session)
   if (req.session.user) {
     next()
   } else {
@@ -13,16 +20,6 @@ users.use(function(req, res, next) {
     res.render('error.html.ejs')
   }
 })
-
-users.get('/:id', db.getUserList, function(req,res){
-  var id = req.params.id
-  res.render('users/profile.html.ejs', {user: res.user[0], session: req.session.user});
-});
-
-users.get('/:id/favlist', function(req,res){
-  var id = req.params.id;
-  res.render('./lists/newfavorite.html.ejs', { id : id})
-});
 
 users.post('/:id/favlist', db.addShowToFavList,  function(req,res){
   var id = req.params.id;
@@ -33,7 +30,6 @@ users.delete('/:id/delete', db.deleteAccount, function(req,res){
   var id = req.params.id;
   res.redirect('/')
 })
-
 
 users.get('/:id/editshow', function(req,res){
   var id = req.params.id;
@@ -49,10 +45,7 @@ users.put('/:id/favlist', db.editShow, function(req,res){
 });
 
 
-users.get('/:id/allshows', db.getShowDetails, function(req,res){
-  var id = req.params.id;
-  res.render('lists/allshows.html.ejs', {user : res.user[0]})
-})
+
 
 users.get('/:id/search', function(req,res){
   res.render('api/search.html.ejs')

@@ -11,12 +11,22 @@
   <nav class="header">
     <nav>ShowTracker</nav>
 
+    <nav>
+      <% if (session) { %>
+      Logged in as: <%= session.name %>
+    <% } %>
+    </nav>
+
     <form action="/new" method="get">
       <button class="nav-btn">Signup</button>
     </form>
-    <form action="/login" method="get">
-      <button class="nav-btn">Login</button>
-    </form>
+
+    <% if (!session) { %>
+      <form action="/login" method="get">
+        <button class="nav-btn">Login</button>
+      </form>
+  <% } %>
+
     <form action="/logout?_method=DELETE" method="post">
       <button class="nav-btn">Logout</button>
     </form>

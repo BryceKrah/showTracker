@@ -75,7 +75,7 @@ function showAllUsers(req,res,next){
     if (err) {
       done()
       console.log(err)
-      return res.status(500).json({success: false, data: err})
+      return res.status(400).json({success: false, data: err})
     }
     var query = client.query('SELECT id,name,bio FROM users ORDER BY id', function(err, results) {
       done();
@@ -97,7 +97,7 @@ function addShowToFavList(req,res,next){
     }
     if(parseInt(req.session.user.id) !== parseInt(req.params.id)){
       done()
-      return res.status(500).render('./error.html.ejs')
+      return res.status(400).render('./error.html.ejs')
     }
     var query = client.query("INSERT INTO shows (name,genre,type,poster) VALUES ($1,$2,$3,$4) RETURNING id;", [req.body.name, req.body.genre, req.body.type, req.body.poster], function(err, results) {
       done();
@@ -209,7 +209,7 @@ function deleteAccount(req,res,next){
   }
   if(parseInt(req.session.user.id) !== parseInt(req.params.id)){
     done()
-    return res.status(500).render('./error.html.ejs')
+    return res.status(400).render('./error.html.ejs')
   }
   client.query('DELETE FROM users WHERE id = $1', [req.params.id], function(err, results) {
     console.log(req.body.sid);
